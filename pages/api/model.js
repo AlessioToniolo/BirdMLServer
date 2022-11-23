@@ -3,7 +3,7 @@ import * as fileSystem from 'fs';
 
 export default async function handler(req, res) {
     //var filePath = path.join(__dirname, 'model.json');
-    const filePath = './pages/api/model.json'
+    const filePath = './public/model.json'
     var stat = fileSystem.statSync(filePath);
 
     res.writeHead(200, {
