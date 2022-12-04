@@ -5,13 +5,14 @@ dotenv.config();
 export default async function handler(req, res) {
     const body = req.body;
     const supabase = createClient(process.env.SUPABASE_PROJECT_URL, process.env.SUPABASE_API_KEY);
-    const { data, error } = await supabase
+    const { error } = await supabase
         .from('birds')
-        .insert([{ id: 1, bird_species: body}]);
+        .insert({bird_species: body});
 
-    if (error) {throw new Error(error.message)}
-    else {
-
+    if (error) {
+        res.status(500).json({ result: false});
+        throw new Error(error.message);
+    } else {
+        res.status(200).json({ result: true });
     }
-
-    res.status(200).json({ text: 'Hello' });
+}
