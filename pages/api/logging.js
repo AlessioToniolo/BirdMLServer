@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const body = req.body;
     const supabase = createClient(process.env.SUPABASE_PROJECT_URL, process.env.SUPABASE_API_KEY);
     const { error } = await supabase
-        .from('birds')
+        .from('birdsaaaa')
         .insert({bird_species: body});
 
     if (error) {
