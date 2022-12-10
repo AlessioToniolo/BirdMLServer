@@ -3,6 +3,10 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export default async function handler(req, res) {
+    if (req.method !== 'POST') {
+        return res.status(405).json({ message: 'Method not allowed' });
+    }
+
     const body = req.body;
     const supabase = createClient(process.env.SUPABASE_PROJECT_URL, process.env.SUPABASE_API_KEY);
     const { data, error } = await supabase
@@ -15,3 +19,4 @@ export default async function handler(req, res) {
     }
 
     res.status(200).json({ text: 'Hello' });
+}
